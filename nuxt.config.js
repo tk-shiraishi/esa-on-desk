@@ -1,5 +1,5 @@
 
-export default {
+module.exports = {
   mode: 'spa',
   /*
   ** Headers of the page
@@ -15,6 +15,7 @@ export default {
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
     ]
   },
+  dev: process.env.NODE_ENV === 'DEV',
   /*
   ** Customize the progress-bar color
   */
@@ -60,7 +61,13 @@ export default {
     /*
     ** You can extend webpack config here
     */
-    extend (config, ctx) {
+    extend (config, { isClient }) {
+      // config.output.publicPath = './_nuxt/'
+      if (process.env.APP_MODE === 'electron') {
+        if (isClient) {
+          config.target = 'electron-renderer'
+        }
+      }
     }
   }
 }

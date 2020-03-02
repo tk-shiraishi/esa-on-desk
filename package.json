@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "esa-on-desk",
   "author": "tk-shiraishi",
+  "main": "main.js",
   "private": true,
   "scripts": {
     "dev": "nuxt",
@@ -10,23 +11,36 @@
     "start": "nuxt start",
     "generate": "nuxt generate",
     "lint": "eslint --ext .js,.vue --ignore-path .gitignore .",
-    "test": "jest"
+    "test": "jest",
+    "electron:dev": "cross-env NODE_ENV=development APP_MODE=electron electron .",
+    "electron:build": "nuxt build && electron-builder"
   },
   "dependencies": {
-    "nuxt": "^2.0.0",
-    "element-ui": "^2.4.11",
     "@nuxtjs/axios": "^5.3.6",
-    "@nuxtjs/pwa": "^3.0.0-0"
+    "@nuxtjs/pwa": "^3.0.0-0",
+    "element-ui": "^2.4.11",
+    "nuxt": "^2.0.0"
   },
   "devDependencies": {
     "@nuxtjs/eslint-config": "^2.0.0",
     "@nuxtjs/eslint-module": "^1.0.0",
+    "@vue/test-utils": "^1.0.0-beta.27",
     "babel-eslint": "^10.0.1",
+    "babel-jest": "^24.1.0",
+    "cross-env": "^7.0.0",
+    "electron": "^8.0.2",
+    "electron-builder": "^22.3.2",
+    "electron-devtools-installer": "^2.2.4",
+    "electron-renderer": "^2.0.4",
     "eslint": "^6.1.0",
     "eslint-plugin-nuxt": ">=0.4.2",
-    "@vue/test-utils": "^1.0.0-beta.27",
-    "babel-jest": "^24.1.0",
     "jest": "^24.1.0",
     "vue-jest": "^4.0.0-0"
+  },
+  "build": {
+    "appId": "bait-box",
+    "directories": {
+      "output": "build"
+    }
   }
 }
